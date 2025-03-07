@@ -2,9 +2,9 @@
   "name": "cyg-js",
   "version": "1.0.0",
   "description": "Cyg Payment SDK",
-  "main": "dist/cyg.umd.js",
+  "main": "dist/cyg.cjs.js",
   "module": "dist/cyg.esm.js",
-  "browser": "dist/cyg.umd.js",
+  "browser": "dist/cygnus.js",
   "types": "dist/types/cygnus.d.ts",
   "files": [
     "dist"
