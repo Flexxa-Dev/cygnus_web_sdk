@@ -1,3 +1,7 @@
+declare namespace _default {
+    export { MerchantSDK };
+}
+export default _default;
 export class MerchantSDK {
     constructor({ apiKey, theme, metadata, redirectUrl, companyName, ...props }: {
         [x: string]: any;

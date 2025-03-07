@@ -77,7 +77,7 @@ export default [
       library: {
         name: "Cygnus",
         type: "umd",
-        export: "MerchantSDK",
+        export: "default",
       },
       globalObject: "typeof self !== 'undefined' ? self : this",
     },

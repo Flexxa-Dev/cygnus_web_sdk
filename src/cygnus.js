@@ -133,3 +133,4 @@ class MerchantSDK {
 }
 
 export { MerchantSDK };
+export default { MerchantSDK };
