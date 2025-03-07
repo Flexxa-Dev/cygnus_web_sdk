@@ -280,3 +280,4 @@ function ensurePaymentUI(sdk, metadata) {
     });
     document.body.appendChild(modal);
 }
+//# sourceMappingURL=payment.js.map

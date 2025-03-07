@@ -203,3 +203,4 @@ export function createPaymentModal(sdk, onClose, { orderId, amount }) {
     };
     return container;
 }
+//# sourceMappingURL=PaymentModal.js.map

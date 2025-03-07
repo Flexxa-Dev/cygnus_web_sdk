@@ -54,3 +54,4 @@ export function createStatusModal(type, message) {
         : paymentStyles.statusModal.titleError);
     Object.assign(text.style, paymentStyles.statusModal.message);
 }
+//# sourceMappingURL=StatusModal.js.map

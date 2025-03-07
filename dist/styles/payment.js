@@ -264,3 +264,4 @@ export const paymentStyles = {
         color: 'var(--payment-secondary-color, #fff)',
     },
 };
+//# sourceMappingURL=payment.js.map

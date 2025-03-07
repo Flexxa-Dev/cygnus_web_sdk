@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc && webpack --config webpack.config.js",
+    "build": "rimraf dist && tsc -p tsconfig.build.json && webpack --config webpack.config.js",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -41,8 +41,14 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/cygnus.js",
-      "require": "./dist/cygnus.js"
+      "import": {
+        "types": "./dist/types/cygnus.d.ts",
+        "default": "./dist/cyg.esm.js"
+      },
+      "require": {
+        "types": "./dist/types/cygnus.d.ts",
+        "default": "./dist/cyg.cjs.js"
+      }
     }
   }
 }
