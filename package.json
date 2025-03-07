@@ -1,0 +1,45 @@
+{
+  "name": "cyg-js",
+  "version": "1.0.0",
+  "description": "Cyg Payment SDK",
+  "main": "dist/cyg.umd.js",
+  "module": "dist/cyg.esm.js",
+  "browser": "dist/cyg.umd.js",
+  "types": "dist/types/cygnus.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc && webpack --config webpack.config.js",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "payment",
+    "sdk"
+  ],
+  "dependencies": {
+    "@stripe/stripe-js": "^5.6.0",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@types/react": "^18.2.0",
+    "rimraf": "^5.0.5",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "dotenv": "^16.0.0",
+    "dotenv-webpack": "^8.0.1"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/cygnus.js",
+      "require": "./dist/cygnus.js"
+    }
+  }
+}
