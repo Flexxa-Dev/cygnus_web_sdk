@@ -36,7 +36,12 @@ const commonConfig = {
     },
   },
   mode: "production",
-  plugins: [new webpack.DefinePlugin(envKeys)],
+  plugins: [
+    new webpack.DefinePlugin({
+      ...envKeys,
+      "process.env.IS_BROWSER": JSON.stringify(true),
+    }),
+  ],
 };
 
 export default [
@@ -78,6 +83,7 @@ export default [
         name: "Cygnus",
         type: "umd",
         export: "default",
+        umdNamedDefine: true,
       },
       globalObject: "typeof self !== 'undefined' ? self : this",
     },

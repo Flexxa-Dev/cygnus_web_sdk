@@ -1,8 +1,50 @@
-import { paymentStyles } from '../styles/payment.js';
+import { paymentStyles } from "../styles/payment.js";
 
 export function createStatusModal(type, message) {
-  const container = document.getElementById('payment-element');
-  const iconSize = '64px';
+  // Check if we're in a browser environment
+  if (typeof document === "undefined") {
+    console.error("Document is not available. Cannot create status modal.");
+    return;
+  }
+
+  const container = document.getElementById("payment-element");
+
+  // Safety check - if container doesn't exist, create a fallback
+  if (!container) {
+    console.warn(
+      "Payment element container not found, creating fallback container"
+    );
+    const fallbackContainer = document.createElement("div");
+    fallbackContainer.id = "payment-element";
+
+    // Try to find payment-container as parent
+    const paymentContainer = document.getElementById("payment-container");
+    if (paymentContainer) {
+      // Find a suitable location within payment-container
+      const modalContent = paymentContainer.querySelector(
+        ".payment-modal-content"
+      );
+      if (modalContent) {
+        // Replace existing payment-element or append new one
+        const existingElement = modalContent.querySelector("#payment-element");
+        if (existingElement) {
+          modalContent.replaceChild(fallbackContainer, existingElement);
+        } else {
+          modalContent.appendChild(fallbackContainer);
+        }
+      } else {
+        // Append to payment-container if modal content not found
+        paymentContainer.appendChild(fallbackContainer);
+      }
+    } else {
+      // Last resort - append to body
+      document.body.appendChild(fallbackContainer);
+    }
+
+    return createStatusModal(type, message); // Retry with new container
+  }
+
+  const iconSize = "64px";
 
   const successHTML = `
     <div class="status-modal">
@@ -15,7 +57,7 @@ export function createStatusModal(type, message) {
         </svg>
       </div>
       <h3>Payment Successful!</h3>
-      <p>${message || 'Your payment has been processed successfully.'}</p>
+      <p>${message || "Your payment has been processed successfully."}</p>
     </div>
   `;
 
@@ -30,40 +72,55 @@ export function createStatusModal(type, message) {
         </svg>
       </div>
       <h3>Payment Failed</h3>
-      <p>${message || 'There was an error processing your payment.'}</p>
+      <p>${message || "There was an error processing your payment."}</p>
     </div>
   `;
 
   // Add animations to document if not already present
-  if (!document.getElementById('payment-animations')) {
-    const styleSheet = document.createElement('style');
-    styleSheet.id = 'payment-animations';
-    styleSheet.textContent = paymentStyles.animations;
-    document.head.appendChild(styleSheet);
+  try {
+    if (!document.getElementById("payment-animations")) {
+      const styleSheet = document.createElement("style");
+      styleSheet.id = "payment-animations";
+      styleSheet.textContent = paymentStyles.animations;
+      document.head.appendChild(styleSheet);
+    }
+
+    container.innerHTML = type === "success" ? successHTML : errorHTML;
+
+    // Apply styles
+    const statusModal = container.querySelector(".status-modal");
+    if (statusModal) {
+      const statusIcon = container.querySelector(".status-icon");
+      const title = container.querySelector("h3");
+      const text = container.querySelector("p");
+
+      Object.assign(statusModal.style, paymentStyles.statusModal.container);
+
+      if (statusIcon) {
+        Object.assign(statusIcon.style, paymentStyles.statusModal.icon.wrapper);
+        Object.assign(
+          statusIcon.style,
+          type === "success"
+            ? paymentStyles.statusModal.icon.success
+            : paymentStyles.statusModal.icon.error
+        );
+      }
+
+      if (title) {
+        Object.assign(title.style, paymentStyles.statusModal.title);
+        Object.assign(
+          title.style,
+          type === "success"
+            ? paymentStyles.statusModal.titleSuccess
+            : paymentStyles.statusModal.titleError
+        );
+      }
+
+      if (text) {
+        Object.assign(text.style, paymentStyles.statusModal.message);
+      }
+    }
+  } catch (error) {
+    console.error("Error creating status modal:", error);
   }
-
-  container.innerHTML = type === 'success' ? successHTML : errorHTML;
-
-  // Apply styles
-  const statusModal = container.querySelector('.status-modal');
-  const statusIcon = container.querySelector('.status-icon');
-  const title = container.querySelector('h3');
-  const text = container.querySelector('p');
-
-  Object.assign(statusModal.style, paymentStyles.statusModal.container);
-  Object.assign(statusIcon.style, paymentStyles.statusModal.icon.wrapper);
-  Object.assign(
-    statusIcon.style,
-    type === 'success'
-      ? paymentStyles.statusModal.icon.success
-      : paymentStyles.statusModal.icon.error,
-  );
-  Object.assign(title.style, paymentStyles.statusModal.title);
-  Object.assign(
-    title.style,
-    type === 'success'
-      ? paymentStyles.statusModal.titleSuccess
-      : paymentStyles.statusModal.titleError,
-  );
-  Object.assign(text.style, paymentStyles.statusModal.message);
 }
