@@ -8,8 +8,6 @@ export class MerchantSDK {
         companyName: any;
     });
     apiKey: any;
-    stripePublicKey: string;
-    stripeSecretKey: string;
     companyName: any;
     redirectUrl: any;
     theme: {
@@ -21,16 +19,12 @@ export class MerchantSDK {
         secondaryColor: any;
         zIndex: any;
     };
-    stripe: import("@stripe/stripe-js").Stripe | null;
-    elements: any;
-    paymentIntent: any;
     eventListeners: {};
     metadata: {};
     _getAuthHeaders(): Promise<{
         Authorization: string;
-        'X-api-key': any;
+        "X-api-key": any;
     }>;
-    initializeStripe(): Promise<void>;
     applyTheme(): void;
     startPayment(options: any): Promise<void>;
     confirmPayment(): Promise<void>;
