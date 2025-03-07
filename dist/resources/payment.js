@@ -269,15 +269,34 @@ function arrayBufferToBase64(buffer) {
     return btoa(binary);
 }
 function ensurePaymentUI(sdk, metadata) {
+    // Check if we're in a browser environment
+    if (typeof document === "undefined") {
+        console.error("Document is not available. Cannot create payment UI.");
+        return;
+    }
     clearPreviousUI();
-    const formattedAmount = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: metadata.currency || "USD",
-    }).format(metadata.amount);
-    const modal = createPaymentModal(sdk, null, {
-        orderId: metadata.orderId || sdk.currentOrderId || "N/A",
-        amount: formattedAmount,
-    });
-    document.body.appendChild(modal);
+    try {
+        const formattedAmount = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: metadata.currency || "USD",
+        }).format(metadata.amount);
+        const modal = createPaymentModal(sdk, null, {
+            orderId: metadata.orderId || sdk.currentOrderId || "N/A",
+            amount: formattedAmount,
+        });
+        // Ensure body exists before appending
+        if (document.body) {
+            document.body.appendChild(modal);
+        }
+        else {
+            console.error("Document body is not available. Cannot append payment modal.");
+        }
+    }
+    catch (error) {
+        console.error("Error creating payment UI:", error);
+        sdk.triggerEvent("paymentFailed", {
+            error: "Failed to create payment interface",
+        });
+    }
 }
 //# sourceMappingURL=payment.js.map
