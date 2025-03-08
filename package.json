@@ -50,5 +50,6 @@
         "default": "./dist/cyg.cjs.js"
       }
     }
-  }
+  },
+  "sideEffects": false
 }
