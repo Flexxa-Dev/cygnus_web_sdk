@@ -3,7 +3,7 @@ import { processCryptoPurchase } from "./crypto.js";
 import { createPaymentModal } from "../ui/PaymentModal.js";
 import { createStatusModal } from "../ui/StatusModal.js";
 
-const API_URL = "https://staging.flexxa.io";
+const API_URL = "http://localhost:3000";
 
 export async function confirmPayment(sdk) {
   if (!sdk.elements) {
