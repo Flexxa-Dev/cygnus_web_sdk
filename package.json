@@ -1,5 +1,5 @@
 {
-  "name": "cyg-js",
+  "name": "cygnus",
   "version": "1.0.0",
   "description": "Cyg Payment SDK",
   "main": "dist/cyg.cjs.js",
