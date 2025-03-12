@@ -14,7 +14,7 @@ function PaymentPage() {
 
   useEffect(() => {
     const sdk = new MerchantSDK({
-      apiKey: process.env.API_KEY,
+      apiKey: process.env.REACT_APP_API_KEY,
       companyName: "Demo Store",
       theme: {
         primaryColor: "#0070f4",

@@ -5,14 +5,13 @@ This project demonstrates the integration of Cygnus Payment SDK with a React app
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - Node.js (version 16 or higher)
 - npm (usually comes with Node.js)
 
 ## Getting Started
 
 1. Clone the repository:
-
-
 
 ```bash
   git clone https://github.com/Flexxa-Dev/cygnus_web_sdk
@@ -24,7 +23,13 @@ Before you begin, ensure you have the following installed:
   cd examples/react
 ```
 
-3. Install dependencies
+3. Add your API key to the `.env` file
+
+```bash
+  API_KEY=your_api_key_here
+```
+
+4. Install dependencies
 
 ```bash
   npm install
@@ -35,5 +40,3 @@ Before you begin, ensure you have the following installed:
 ```bash
   npm run start
 ```
-
-
