@@ -64,9 +64,16 @@ function PaymentPage() {
 
   const handlePayment = () => {
     const paymentData = {
-      amount: 4999, // Amount in cents
+      amount: 49.99, // Amount in cents
       currency: "usd",
       externalUserId: "2110990571",
+      theme: {
+        primaryColor: "#000000",
+        secondaryColor: "#ffffff",
+        fontColor: "#000000",
+        buttonText: "Complete Payment",
+        buttonTextColor: "#ffffff",
+      },
       metadata: {
         customer: {
           email: "customer@example.com",
@@ -88,7 +95,7 @@ function PaymentPage() {
   return (
     <div className="container">
       <div className="header">
-        <h1>Demo Store</h1>
+        <h1>Cygnus Payment Demo</h1>
         <p className="subtitle">Complete your purchase</p>
       </div>
 
