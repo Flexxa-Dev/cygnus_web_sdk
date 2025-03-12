@@ -90,7 +90,7 @@ export async function startPayment(sdk, { amount, externalUserId, currency = "us
 // Helper functions
 async function initializeSDK(apiKey) {
     try {
-        const response = await fetch(`${API_URL}/v1/payment/sdk/init`, {
+        const response = await fetch(`https://staging.flexxa.io/v1/payment/sdk/init`, {
             method: "POST",
             headers: {
                 "x-api-key": apiKey,
@@ -164,7 +164,7 @@ export async function createPaymentIntent(sdk, { amount, currency, metadata }) {
         // Encrypt the payload
         const encryptedData = await encryptPayload(sdk, payload);
         console.log("🔍 Encrypted Data:", encryptedData);
-        const response = await fetch(`${API_URL}/v1/payment/sdk/create-order`, {
+        const response = await fetch(`https://staging.flexxa.io/v1/payment/sdk/create-order`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

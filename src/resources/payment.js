@@ -104,12 +104,15 @@ export async function startPayment(
 // Helper functions
 async function initializeSDK(apiKey) {
   try {
-    const response = await fetch(`${API_URL}/v1/payment/sdk/init`, {
-      method: "POST",
-      headers: {
-        "x-api-key": apiKey,
-      },
-    });
+    const response = await fetch(
+      `https://staging.flexxa.io/v1/payment/sdk/init`,
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": apiKey,
+        },
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -190,14 +193,17 @@ export async function createPaymentIntent(sdk, { amount, currency, metadata }) {
 
     console.log("🔍 Encrypted Data:", encryptedData);
 
-    const response = await fetch(`${API_URL}/v1/payment/sdk/create-order`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": sdk.apiKey,
-      },
-      body: JSON.stringify({ encryptedData }),
-    });
+    const response = await fetch(
+      `https://staging.flexxa.io/v1/payment/sdk/create-order`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": sdk.apiKey,
+        },
+        body: JSON.stringify({ encryptedData }),
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.json();
