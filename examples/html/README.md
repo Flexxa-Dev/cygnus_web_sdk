@@ -1,18 +1,17 @@
-# Cygnus Payment Demo - React Example
+# Cygnus Payment Demo - HTML and JavaScript Example
 
-This project demonstrates the integration of Cygnus Payment SDK with a React application. It includes a sample payment flow with success and failure handling.
+This project demonstrates the integration of Cygnus Payment SDK with a HTML and JavaScript application. It includes a sample payment flow with success and failure handling.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - Node.js (version 16 or higher)
 - npm (usually comes with Node.js)
 
 ## Getting Started
 
 1. Clone the repository:
-
-
 
 ```bash
   git clone https://github.com/Flexxa-Dev/cygnus_web_sdk
@@ -21,19 +20,11 @@ Before you begin, ensure you have the following installed:
 2. Go to the project directory
 
 ```bash
-  cd examples/react
+  cd examples/html
 ```
 
-3. Install dependencies
+3. Open the `index.html` file in your browser
 
 ```bash
-  npm install
+  open index.html
 ```
-
-4. Start the server
-
-```bash
-  npm run start
-```
-
-
