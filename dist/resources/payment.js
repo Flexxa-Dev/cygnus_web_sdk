@@ -3,6 +3,7 @@ import { processCryptoPurchase } from "./crypto.js";
 import { createPaymentModal } from "../ui/PaymentModal.js";
 import { createStatusModal } from "../ui/StatusModal.js";
 const API_URL = "https://staging.flexxa.io";
+const version = "v1";
 export async function confirmPayment(sdk) {
     if (!sdk.elements) {
         console.error("Stripe Elements not initialized properly");
